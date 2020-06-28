@@ -103,7 +103,28 @@ var b = new a('b')
 b.xxx // 'ab'
 ```
 
+### 给对象实现迭代器属性
 
+```javascript
+var a = {
+  a: 1,
+  b: 3,
+  c: 2
+}
+Object.defineProperty(a, Symbol.iterator, {
+  configurable: true,
+  writable: true,
+  enumerable: true,
+  value: function () {
+    let idx = 0
+    let keys = Object.keys(a)
+    return {
+      value: a[keys[idx]],
+      done: idx >= keys.length
+    }
+  }
+})
+```
 
 
 
