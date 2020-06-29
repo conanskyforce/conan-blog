@@ -88,3 +88,4 @@ reader.onload = function() {
   link.href = reader.result; // data url
   link.click();
 };
+```
