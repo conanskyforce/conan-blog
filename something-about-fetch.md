@@ -65,30 +65,25 @@ let commits = JSON.parse(result);
 alert(commits[0].author.login);
 ```
 ### 转换成blob 
+```javascript
+
 let blob = new Blob(["Hello, world!"], {type: 'text/plain'});
-
 link.href = URL.createObjectURL(blob);
-
 let link = document.createElement('a');
 link.download = 'hello.txt';
 
+
 let blob = new Blob(['Hello, world!'], {type: 'text/plain'});
-
 link.href = URL.createObjectURL(blob);
-
 link.click();
-
 URL.revokeObjectURL(link.href);
 
 
 let link = document.createElement('a');
 link.download = 'hello.txt';
-
 let blob = new Blob(['Hello, world!'], {type: 'text/plain'});
-
 let reader = new FileReader();
 reader.readAsDataURL(blob); // 将 Blob 转换为 base64 并调用 onload
-
 reader.onload = function() {
   link.href = reader.result; // data url
   link.click();
