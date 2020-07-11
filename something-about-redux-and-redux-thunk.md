@@ -46,7 +46,7 @@ logger = next => action => {
 // - - - - - >
 // reduxThunk(logger(store.dispatch))
 
-// reduxThunk 的 next 即为 store.dispatch
+// logger 的 next 即为 store.dispatch
 logger = action => {
   console.green(`logger: action:${action.type? action.type: action } start:`,getState())
   next(action)
