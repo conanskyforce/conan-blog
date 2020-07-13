@@ -27,5 +27,32 @@ function next(arg,err){
 var gen = range(2,10)
 next()
 
+- - - - - - - - - - - - 
+var fs = require('fs')
+
+var readFile = function (fileName) {
+	return new Promise((resolve,reject)=>{
+		fs.readFile(fileName,(err,data)=>{
+			if(err)reject(err)
+			resolve(data)
+		})
+	})
+}
+
+var gen = function * () {
+	var f1 = yield readFile('/etc/fstab')
+	var f2 = yield readFile('/etc/shells')
+	console.log(f1.toString())
+	console.log(f2.toString())
+}
+
+var generator = gen()
+
+generator.next().value.then((data)=>{
+	generator.next(data).value.then(data2=>{
+		g.next(data2)
+	})
+})
+
 ```
 
