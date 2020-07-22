@@ -47,3 +47,33 @@ ssh-copy-id beijing
 ssh-copy-id lancer
 ```
 ## step 2
+
+接下来，你就可以安装并设置ansible了
+
+最简单的做法：
+
+```
+yum install -y ansible
+```
+设置 配置文件
+vi /etc/ansible/hosts
+```
+[nodes]
+localhost ansible_connection=local
+tomotech ansible_user=root ansible_ssh_host=xx.xx.x.xx
+guangzhou ansible_python_interpreter=/usr/bin/python3 ansible_user=ubuntu ansible_ssh_host=xx.xx.x.xx
+shanghai ansible_python_interpreter=/usr/bin/python3 ansible_user=ubuntu ansible_ssh_host=xx.xx.x.xx
+chengdu # 可以忽略, 因为已经在 ~/.ssh/config 里边设置过了
+beijing # 可以忽略, 因为已经在 ~/.ssh/config 里边设置过了
+```
+
+## 操作
+
+简单版
+
+```
+ansible nodes -m ping
+ansible nodes -m command -a 'ls'
+ansible nodes -m command -a 'df -h'
+ansible nodes -m command -a 'whoami'
+```
