@@ -6,3 +6,4 @@ echo [yourhostname] > /proc/sys/kernel/hostname
 
 hostnamectl set-hostname [yourhostname]
 
+hostname [yourhostname] # only valid in your current shell
