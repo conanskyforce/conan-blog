@@ -36,6 +36,16 @@ var logN = (n = 1e3) => {
 	}
 }
 
+// 递归的斐波拉契数列 时间复杂度（O(2^n)）.好复杂的呀\\(^o^)/~
+var fib = (n) => {
+	if (n === 1 || n === 0) {
+		return 1
+	}
+	return fib(n - 1) + fib(n - 2)
+}
+
+// 复杂度依次上升 O(1),O(logN),O(n),O(nlogN),O(n^2),O(2^n),O(n!)
+
 
 
 
