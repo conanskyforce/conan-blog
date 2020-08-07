@@ -46,16 +46,17 @@ var fib = (n) => {
 
 // 复杂度依次上升 O(1),O(logN),O(n),O(nlogN),O(n^2),O(2^n),O(n!)
 
-
-
-
-
-
-
-
-
-
-
+// 翻转数字
+var reverseNum = (num) => parseInt((num+'').split('').reverse().join(''))
+var reverseNum2 = (x) => {
+	let num = Math.abs(x)
+	let tmp = 0;
+	while(num != 0){
+		tmp = num % 10+ tmp * 10;
+		num = Math.floor(num/10)
+	}
+	return x > 0? tmp: -tmp
+}
 
 
 
