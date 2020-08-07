@@ -58,6 +58,38 @@ var reverseNum2 = (x) => {
 	return x > 0? tmp: -tmp
 }
 
+// 有效字母异位词
+// 输入: s = "anagram", t = "nagaram"
+// 输出: true
+var isAnagram = (a,b) => {
+	if(a.length != b.length) return false
+	return a.split('').sort().join('') == b.split('').sort().join('')
+}
+
+var isAnagram = (a,b) => {
+	if(a.length != b.length) return false
+	let hash = {};
+	for(const i of a){
+		hash[i]?(hash[i]+=1):(hash[i] = 1)
+	}
+	for(const i of b){
+		if(!hash[i]) return false
+		hash[i] -= 1
+	}
+	return true
+}
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
