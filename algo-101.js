@@ -79,15 +79,18 @@ var isAnagram = (a,b) => {
 	return true
 }
 
-
-
-
-
-
-
-
-
-
+// 原地翻转(reverse)字符串
+var O1ReverseChar = (charArr) => {
+	let len = charArr.length;
+	let mid = Math.floor(len/2);
+	for(let i=0;i<=mid;i++){
+		// 可以改成解构
+		let tmp = charArr[i];
+		charArr[i] = charArr[len - 1 - i];
+		charArr[len - 1 - i] = tmp;
+	}
+	return charArr
+}
 
 
 
