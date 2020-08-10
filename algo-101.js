@@ -92,6 +92,29 @@ var O1ReverseChar = (charArr) => {
 	return charArr
 }
 
+var O1ReverseChar2 = (charArr) => {
+	for(let i=0;i<charArr.length/2;i++){
+		[charArr[i],charArr[charArr.length -1 - i]] = [charArr[charArr.length -1 - i],charArr[i]]
+	}
+	return charArr
+}
+
+// 第一个不重复字符串
+var singleLit = (char) => {
+	for(let a of char){
+		if(char.indexOf(a) === char.lastIndexOf(a)){
+			return char.indexOf(a)
+		}
+	}
+	return -1
+}
+
+
+
+
+
+
+
 
 
 
