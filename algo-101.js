@@ -109,21 +109,20 @@ var singleLit = (char) => {
 	return -1
 }
 
+var singleLit2 = (char) => {
+	let hash = {}
+	for(let a of char){
+		hash[a]?(hash[a] += 1): (hash[a] = 1)
+	}
+	for(let i = 0; i < char.length; i++){
+		if(hash[char[i]] == 1) return i
+	}
+	return -1
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+// 回文
+var isPalinDrome = (str) => {
+	str = str.toLowerCase();
+	let tmp = str.replace(/[^\d\w]/g,'')
+	return tmp.split('').reverse().join('') == tmp
+}
