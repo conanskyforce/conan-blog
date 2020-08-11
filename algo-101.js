@@ -126,3 +126,31 @@ var isPalinDrome = (str) => {
 	let tmp = str.replace(/[^\d\w]/g,'')
 	return tmp.split('').reverse().join('') == tmp
 }
+
+// 字符串匹配多字符串
+// 给定 haystack = 'hello world', needle = 'll' 2
+// 返回2
+var strStr = (haystack,needle) => {
+	let reg = new RegExp(needle);
+	let mt = reg.exec(haystack)
+	return mt ? mt.index : -1
+}
+
+var strStr2 = (haystack,needle) => {
+	if(needle === '') return 0
+	if(needle.length > haystack.length) return -1
+	if(needle.length === haystack.length){
+		if(needle === haystack) return 0
+		return -1
+	}
+	for (let i = 0; i < haystack.length - needle.length; i++) {
+		if(haystack[i] !== needle[0]){
+			continue
+		}
+		if(haystack.substring(i,i + needle.length) === needle){
+			return i
+		}
+	}
+	return -1
+}
+
