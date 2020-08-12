@@ -154,3 +154,18 @@ var strStr2 = (haystack,needle) => {
 	return -1
 }
 
+// 最长公共前缀
+// 输入: ["flower","flow","flight"]
+// 输出: "fl"
+
+var longestCommonPrefix = (arr) => {
+	let arr1 = arr[0]
+	let tmp = ''
+	for(let a of arr1){
+		if(arr.every(ar=>ar.indexOf(a)!=-1)){
+			tmp += a
+		}
+	}
+	return tmp
+}
+longestCommonPrefix(["flower","flow","flight"])
