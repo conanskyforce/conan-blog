@@ -45,7 +45,7 @@ actually /a/b/c1.png  !!(watch out)
 root 是将location后边的地址*拼接*
 ```
 location /images/ 
-alias /a/b/c
+root /a/b/c
 visit xxx.dc.xx/images/1.png
 actually /a/b/c/images/1.png  !!(watch out)
 ```
