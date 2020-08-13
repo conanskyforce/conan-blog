@@ -169,3 +169,46 @@ var longestCommonPrefix = (arr) => {
 	return tmp
 }
 longestCommonPrefix(["flower","flow","flight"])
+
+// 最长回文
+// 输入: "babad"
+// 输出: "bab"
+// 注意: "aba" 也是一个有效答案
+var longestPanlindrome = (s) => {
+	const dp = []
+	for(let i = 0; i < s.length;i++){
+		dp[i] = []
+	}
+	let max = -1, str = '';
+	for(let l = 0; l < s.length; l++){
+		// l为所遍历的子串长度 - 1，即左下标到右下标的长度
+		for(let i = 0; i + l < s.length; i++){
+			const j = i + l;
+			// i为子串开始的左下标，j为子串开始的右下标
+			if(l === 0){
+				// 当子串长度为1时，必定是回文子串
+				dp[i][j] = true;
+			} else if (l <=2){
+				// 长度为2或3时，首尾字符相同则是回文子串
+				if(s[i] === s[j]){
+					dp[i][j] = true
+				} else {
+					dp[i][j] = false
+				}
+			} else {
+				// 长度大于3时，若首尾字符相同且去掉首尾之后的子串仍为回文，则为回文子串
+				if((s[i] === s[j]) && dp[i+1][j-1]){
+					dp[i][j] = true
+				} else {
+					dp[i][j] = false
+				}
+			}
+			if (dp[i][j] && l > max) {
+				max = l;
+				str = s.substring(i, j + 1)
+			}
+		}
+	}
+	return str
+}
+longestPanlindrome('ddffnnsddsnn')
