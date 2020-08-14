@@ -212,3 +212,60 @@ var longestPanlindrome = (s) => {
 	return str
 }
 longestPanlindrome('ddffnnsddsnn')
+
+
+// 罗马字符转数字
+
+var rome2Number = (rome) => {
+	let ret = 0
+	for (let i = 0; i < rome.length; i++) {
+		switch(rome[i]){
+			case 'M':
+				ret += 1000;
+				break;
+			case 'D':
+				ret += 500;
+				break;
+			case 'L':
+				ret += 50;
+				break;
+			case 'V':
+				ret += 5;
+				break;
+			case 'C':
+				if(rome[i+1] === 'D'){
+					ret += 400
+					i += 1
+				} else if(rome[i+1] === 'M'){
+					ret += 900
+					i += 1
+				} else {
+					ret += 100
+				}
+				break;
+			case 'X':
+				if(rome[i+1] === 'L'){
+					ret += 40
+					i += 1
+				} else if(rome[i+1] === 'C'){
+					ret += 90
+					i += 1
+				} else {
+					ret += 10
+				}
+				break;
+			case 'I':
+				if(rome[i+1] === 'V'){
+					ret += 4
+					i += 1
+				} else if(rome[i+1] === 'X'){
+					ret += 9
+					i += 1
+				} else {
+					ret += 1
+				}
+				break;
+		}
+	}
+	return ret
+}
