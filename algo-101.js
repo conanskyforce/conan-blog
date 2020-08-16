@@ -269,3 +269,31 @@ var rome2Number = (rome) => {
 	}
 	return ret
 }
+
+// 输入:"III"
+// 输出:3
+//
+// 输入:"IV"
+// 输出:4
+//
+// 输入:"LVIII"
+// 输出:58
+//
+// 输入:"MCMXCIV"
+// 输出:1994
+
+var fizzBuzz = (n) => {
+	let ret = []
+	for (let i = 1; i <= n; i++) {
+		if(i%3 === 0 && i % 5 ===0){
+			ret.push('FizzBuzz')
+		} else if( i % 3 === 0){
+			ret.push('Fizz')
+		} else if( i % 5 === 0){
+			ret.push('Buzz')
+		} else{
+			ret.push(i)
+		}
+	}
+	return ret
+}
