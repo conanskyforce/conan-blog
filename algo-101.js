@@ -297,3 +297,26 @@ var fizzBuzz = (n) => {
 	}
 	return ret
 }
+
+// 统计质数
+// 输入:10
+// 输出:4
+// 解释: 小于 10 的质数一共有 4 个, 它们是 2,3,5,7 。
+var primes = (n) => {
+	let ret = []
+	function isPrime(x){
+		let prime = true;
+		for(let i = 2; i <= Math.sqrt(x); i++){
+			if(x % i == 0){
+				prime = false
+			}
+		}
+		return prime;
+	}
+	for(let i = 2; i< n;i++){
+		if(isPrime(i)){
+			ret.push(i)
+		}
+	}
+	return ret
+}
