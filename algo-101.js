@@ -320,3 +320,17 @@ var primes = (n) => {
 	}
 	return ret
 }
+// 时间复杂度 O(n√n)
+var countPrimes = (n) => {
+	let count = 0
+	const arr = new Uint8Array(n);
+	for(let i = 2; i < n; i++){
+		if(!arr[i - 1]){
+			count++
+			for(let j = i * i; j <= n; j += i){
+				arr[ j -1 ] = true;
+			}
+		}
+	}
+	return count
+}
