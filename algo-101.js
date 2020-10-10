@@ -334,3 +334,17 @@ var countPrimes = (n) => {
 	}
 	return count
 }
+
+// 埃拉托斯特尼筛法
+// 时间复杂度O(nloglogn)
+
+// 3的幂
+var isN3 = (n) => {
+	if(n <= 2) return false
+	let i;
+	while(n > 2){
+		if(n % 3 !== 0) return false
+		n = n /3
+	}
+	return true
+}
