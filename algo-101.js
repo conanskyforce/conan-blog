@@ -348,3 +348,26 @@ var isN3 = (n) => {
 	}
 	return true
 }
+
+// 1 输入:19
+// 2 输出: true
+// 3 解释:
+// 4 1^2+9^2=82
+// 5 8^2+2^2=68
+// 6 6^2+8^2=100
+// 7 1^2+0^2+0^2=1
+var existMap = {}
+var isHappyNumber = (n) => {
+	n = n + ''
+	let res = n.split('').map(x=>Math.pow(x,2)).reduce((a,b)=>a+b,0)
+	if(existMap[res]){
+		return false
+	} else {
+		existMap[res] = true
+	}
+	if(res == 1){
+		return true
+	}else {
+		return isHappyNumber(res)
+	}
+}
