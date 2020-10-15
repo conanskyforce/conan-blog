@@ -1,8 +1,7 @@
 /// ## 设计模式
 
 
-// AOP
-
+// ### AOP
 Function.prototype.before = function(beforeFn){
   const _self = this
   return function(){
@@ -31,3 +30,25 @@ a.before(function(){
   console.log('after:a, args:',...args)
 })
 (1,2,3)
+
+// ### 单例模式
+
+function Singleton(name, age){
+  this.name = name
+  this.age = age
+}
+Singleton.prototype.info = function(){
+  return this.name + ',' + this.age
+}
+
+Singleton.getInstance = function(name,age){
+  console.log(this)
+  if(!this.instance) {
+    this.instance = new Singleton(name,age)
+  }
+  return this.instance
+}
+
+
+
+
