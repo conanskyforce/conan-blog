@@ -371,3 +371,43 @@ var isHappyNumber = (n) => {
 		return isHappyNumber(res)
 	}
 }
+
+var binaryTree = () => {}
+
+// 性质1
+// 1.二叉树的第k层最多有2^(k-1) 个节点
+// 2.深度为k的二叉树的最多有2^k-1 个节点
+// 3.终端节点数为n0，度为2的节点数为n2，n0 = n2 + 1
+// 4.具有n个节点的完全二叉树的深度为log2N + 1
+
+var binarySearch = (num, arr) => {
+	var len = arr.length;
+	var middle = Math.ceil(len / 2);
+	if(arr > arr[middle]){
+		binarySearch(num,arr.slice(0,middle))
+	} else if( arr < arr[middle]) {
+		binarySearch(num,arr.slice(middle, -1))
+	} else {
+		return middle
+	}
+}
+var arr = [1,3,4,5,6,87,754]
+binarySearch(5,arr)
+
+
+
+
+
+
+
+
+
+runSomeTimesCost(_1)
+runSomeTimesCost(n1)
+runSomeTimesCost(n2)
+runSomeTimesCost(logN)
+runSomeTimesCost(()=>fib(10))
+runSomeTimesCost(()=>reverseNum(4910949023))
+runSomeTimesCost(()=>reverseNum2(4910949023))
+runSomeTimesCost(()=>singleLit('4910949023'))
+runSomeTimesCost(()=>singleLit2('4910949023'))
