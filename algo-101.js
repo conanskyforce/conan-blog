@@ -421,6 +421,22 @@ var selectSort = (arr) => {
 	return arr
 }
 
+var insertSort = (arr) => {
+	let value,j
+	for(let i = 0; i < arr.length; i++){
+		value = arr[i]
+		for(j = i - 1 ; j > -1 && arr[j] > value; j--) {
+			arr[j + 1] = arr[j]
+		}
+		arr[j+i]=value
+	}
+	return arr
+}
+
+var arr = [1,4123,34,553,25,235,632,533,4,532,5,35,-5]
+
+insertSort(arr)
+
 
 
 
