@@ -1,5 +1,8 @@
 /// ## 设计模式
 
+const { concat } = require("lodash")
+const { func } = require("prop-types")
+
 
 // ### AOP
 Function.prototype.before = function(beforeFn){
@@ -61,3 +64,45 @@ Singleton.getInstance = (function(...args){
 var conan = Singleton.getInstance('conan',29)
 var steven = Singleton.getInstance('steven',59)
 conan === steven // true
+
+// version 2
+const SingleInstance = (function(){
+  let instance
+  function CreateInstance(...args){ // 构造函数内容太多，违法了单一职责约束
+    if (instance) return instance
+    this.args = args
+    this.init()
+    return instance = this
+  }
+  CreateInstance.prototype.init = function(){
+    instance = CreateInstance
+    console.log('only init once')
+  }
+  return CreateInstance
+}())
+
+const a = new SingleInstance('a')
+const b = new SingleInstance('b')
+a === b // true
+
+// version 3 (代理模式, 职责分离，解耦)
+const SingleInstance = function(...args){
+  this.args = args
+  this.init()
+}
+SingleInstance.prototype.init = function(){
+  console.log('only init once...')
+}
+
+const ProxySingleton = (function(){
+  let instance = null
+  return function(...args){
+    if (!instance) {
+      instance = new SingleInstance(...args)
+    }
+    return instance
+  }
+}())
+
+c = new ProxySingleton('12',3)
+d = new ProxySingleton('23','adasd')
