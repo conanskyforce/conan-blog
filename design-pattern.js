@@ -48,7 +48,16 @@ Singleton.getInstance = function(name,age){
   }
   return this.instance
 }
-
-
-
-
+// or 惰性单利，JavaScript中重要程度可能超出你的想象
+Singleton.getInstance = (function(...args){
+  let instance = null
+  return function(){
+    if(!instance){
+      instance = new Singleton(...args)
+    }
+    return instance
+  }
+})()
+var conan = Singleton.getInstance('conan',29)
+var steven = Singleton.getInstance('steven',59)
+conan === steven // true
