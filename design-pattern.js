@@ -106,3 +106,13 @@ const ProxySingleton = (function(){
 
 c = new ProxySingleton('12',3)
 d = new ProxySingleton('23','adasd')
+
+// 抽象出通用性惰性单例
+const getSingle = (fn) => {
+  let instance = null
+  return function(){
+    return instance || (instance = fn.apply(this,arguments))
+  }
+}
+const single = getSingle((...args)=>console.log(...args))
+single()
