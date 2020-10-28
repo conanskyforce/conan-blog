@@ -116,3 +116,29 @@ const getSingle = (fn) => {
 }
 const single = getSingle((...args)=>console.log(...args))
 single()
+
+// ### 策略模式 (定义一系列算法，并将它们一个个封装起来，并使它们可以相互替换)
+const performA = salary => salary * 6
+const performB = salary => salary * 4
+const performC = salary => salary * 2
+
+function Bonus(){
+  this.salary = null
+  this.strategy = null
+}
+Bonus.prototype.setStrategy = function(strategy){
+  this.strategy = strategy
+  return this
+}
+Bonus.prototype.setSalary = function(salary){
+  this.salary = salary
+  return this
+}
+Bonus.prototype.calculate = function(salary){
+  return this.strategy(this.salary)
+}
+
+const bonus = new Bonus()
+bonus.setSalary(2e4)
+.setStrategy(performA)
+.calculate()
