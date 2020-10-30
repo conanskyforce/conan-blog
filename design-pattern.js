@@ -142,3 +142,17 @@ const bonus = new Bonus()
 bonus.setSalary(2e4)
 .setStrategy(performA)
 .calculate()
+
+// js版本的策略模式
+
+var strategies = {
+  "A": salary => salary * 6,
+  "B": salary => salary * 4,
+  "C": salary => salary * 2,
+}
+const calculateBonus = (level, salary) => {
+  return strategies[level] && strategies[level](salary)
+}
+calculateBonus('A', 52000)
+calculateBonus('B', 32000)
+calculateBonus('C', 12000)
