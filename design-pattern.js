@@ -215,3 +215,24 @@ Animate.prototype.update = function(pos){
 var div = document.querySelector('.source-box'); 
 var animate = new Animate( div );
 animate.start( 'top', 500, 2000, 'strongEaseOut' );
+
+// ## 虚拟代理实现图片加载
+const myImage = (function(){
+  var imgNode = document.createElement('img')
+  document.body.appendChild(imgNode)
+  return {
+    setSrc: (src) => {
+      imgNode.src = src
+    }
+  }
+}())
+const proxyImage = (function(){
+  var img = new Image
+  img.onload = () => myImage.setSrc(this.src)
+  return {
+    setSrc: (src) => {
+      myImage.setSrc('xxxx.loading.gif')
+      img.src = src
+    }
+  }
+}())
