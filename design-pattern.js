@@ -236,3 +236,22 @@ const proxyImage = (function(){
     }
   }
 }())
+
+// ## 代理HTTP请求(请求防抖)
+const syncFile = (id)=>{
+  console.log(`Sync files: id`)
+}
+const proxySyncFile = (()=>{
+  const cache = []
+  const timer = null
+  return function(id){
+    cache.push(id)
+    if(timer) return
+    timer = setTimeout(()=>{
+      syncFile(cache.join(','))
+      clearTimeout(timer)
+      timer = null
+      cache.length = 0
+    },2000)
+  }
+})()
