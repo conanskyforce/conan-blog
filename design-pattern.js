@@ -255,3 +255,23 @@ const proxySyncFile = (()=>{
     },2000)
   }
 })()
+
+// ## 缓存代理
+const multi = () => {
+  console.log('start calculate')
+  let ret  = 1
+  for(let i = 0; i < arguments.length; i++) {
+    ret *= arguments[i]
+  }
+  return ret
+}
+const proxyMulti = (()=>{
+  var cache = {}
+  return function(){
+    const args = Array.prototype.slice.call(arguments,',')
+    if(args in cache) {
+      return cache[args]
+    }
+    return cache[args] = multi.apply(this,args,arguments)
+  }
+})()
