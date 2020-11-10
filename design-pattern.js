@@ -275,3 +275,14 @@ const proxyMulti = (()=>{
     return cache[args] = multi.apply(this,args,arguments)
   }
 })()
+
+// ## 缓存代理工厂
+
+const createProxyFactory = (fn) => {
+  const cache = {}
+  return (...args) => {
+    let args = Array.prototype.slice.call(arguments,',')
+    if(cache[args]) return cache[args]
+    return cache[args] = fn.apply(this,arguments  )
+  }
+}
