@@ -286,3 +286,12 @@ const createProxyFactory = (fn) => {
     return cache[args] = fn.apply(this,arguments  )
   }
 }
+
+// ### 迭代器模式
+
+const each = (arr, fn) => {
+  for(let i = 0; i < arr.length; i++){
+    fn(i, arr[i])
+  }
+}
+each([1, 2, 3, 4, 5], (idx, val) =>console.log(idx, val))
