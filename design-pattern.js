@@ -295,3 +295,20 @@ const each = (arr, fn) => {
   }
 }
 each([1, 2, 3, 4, 5], (idx, val) =>console.log(idx, val))
+
+// 外部迭代器
+const Iterator = function(obj) {
+  var current = 0
+  var next = () => {
+    current += 1
+  }
+  var getCurrentItem = () => obj[current]
+  var isDone = () => current >= obj.length
+  var getIndex = () => current
+  return {
+    next,
+    isDone,
+    getCurrentItem,
+    getIndex
+  }
+}
