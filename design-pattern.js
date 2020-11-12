@@ -312,3 +312,20 @@ const Iterator = function(obj) {
     getIndex
   }
 }
+
+const compareTwo = (iterator1,iterator2) => {
+  while (!iterator1.isDone() || !iterator2.isDone()) {
+    if (iterator1.getCurrentItem() !== iterator2.getCurrentItem()){
+      console.log(`index: ${iterator1.getIndex()}`)
+      console.log(`iterator1: ${iterator1.getCurrentItem()},iterator2: ${iterator2.getCurrentItem()}`)
+      return false
+    }
+    iterator1.next()
+    iterator2.next()
+  }
+  return true
+}
+var it1 = Iterator([1,2,3])
+var it2 = Iterator([1,2,3,4,5])
+compareTwo(it1, it2)
+
