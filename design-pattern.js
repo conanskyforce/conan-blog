@@ -329,3 +329,16 @@ var it1 = Iterator([1,2,3])
 var it2 = Iterator([1,2,3,4,5])
 compareTwo(it1, it2)
 
+// ### 发布订阅模式
+
+const EventEmitter =  function() {
+  this.listeners = []
+}
+EventEmitter.prototype.listen = function(fn) {
+  this.listeners.push(fn)
+}
+EventEmitter.prototype.trigger = function(){
+  this.listeners.forEach((listenFn,idx) => {
+    listenFn.apply(this, arguments)
+  })
+}
