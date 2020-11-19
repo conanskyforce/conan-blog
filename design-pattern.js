@@ -342,3 +342,33 @@ EventEmitter.prototype.trigger = function(){
     listenFn.apply(this, arguments)
   })
 }
+
+var e = new EventEmitter()
+e.listen(() => {console.log('1')})
+e.listen((...args) => {console.log(args)})
+e.trigger(1,2,3)
+// = = = = = = = = = = = = = = = = = = = = 
+class EventEmitter {
+  constructor(){
+    this.listeners = {}
+    this.on = this.listen.bind(this)
+  }
+  listen(name, fn) {
+    if(!this.listeners[name]){
+      this.listeners[name] = []
+    }
+    this.listeners[name].push(fn)
+  }
+  trigger (name,...args) {
+    if (this.listeners[name]) {
+      this.listeners[name].forEach(fn => {
+        fn.apply(this, args)
+      })
+    }
+  }
+  off(name,fn){
+    try {
+      this.listeners[name] = this.listeners[name].filter(listen => listen != fn)
+    } catch (err) { console.log(err) }
+  }
+}
