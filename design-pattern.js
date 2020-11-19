@@ -372,3 +372,12 @@ class EventEmitter {
     } catch (err) { console.log(err) }
   }
 }
+
+var e = new EventEmitter()
+e.listen('log',() => {console.log('1')})
+e.listen('log',(...args) => {console.log(args)})
+const logFn = () =>alert(123)
+e.on('log',logFn)
+e.off('log',logFn)
+e.trigger(1,2,3)
+e.trigger('log',1,2,3)
