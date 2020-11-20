@@ -381,3 +381,42 @@ e.on('log',logFn)
 e.off('log',logFn)
 e.trigger(1,2,3)
 e.trigger('log',1,2,3)
+
+// ### 命令模式（利用command对象，解耦请求者 和 接受者）
+
+const setCommand = (button, command) => {
+  button.onclick = () => command.execute()
+}
+
+const menuBar = {
+  refresh : () => console.log('刷新菜单')
+}
+const subMenu = {
+  add: () => console.log('增加子菜单'),
+  del: () => console.log('删除子菜单')
+}
+const MenuBarCommand = function(receiver){
+  this.receiver = receiver
+}
+MenuBarCommand.prototype.execute = function(){
+  this.receiver.refresh()
+}
+const AddSubMenu = function(receiver){
+  this.receiver = receiver
+}
+AddSubMenu.prototype.execute = function(){
+  this.receiver.add()
+}
+const DelSubMenu = function(receiver){
+  this.receiver = receiver
+}
+DelSubMenu.prototype.execute = function(){
+  this.receiver.del()
+}
+const menuBarCommand = new MenuBarCommand(menuBar)
+const addSubMenu = new AddSubMenu(subMenu)
+const delSubMenu = new DelSubMenu(subMenu)
+
+setCommand(button1, menuBarCommand)
+setCommand(button2, addSubMenu)
+setCommand(button3, delSubMenu)
