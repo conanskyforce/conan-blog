@@ -420,3 +420,32 @@ const delSubMenu = new DelSubMenu(subMenu)
 setCommand(button1, menuBarCommand)
 setCommand(button2, addSubMenu)
 setCommand(button3, delSubMenu)
+
+// ### Macro 宏命令
+const closeDoorCommand = {
+  execute: () => console.log('关门')
+}
+const closeWindowCommand = {
+  execute: () => console.log('关窗')
+}
+const openLight = {
+  execute: () => console.log('开灯')
+}
+const openTV = {
+  execute: () => console.log('开电视')
+}
+const MacroCommand = function() {
+  const commands = []
+  return {
+    add: (command) => commands.push(command),
+    execute: () => {
+      commands.forEach(command => command.execute())
+    }
+  }
+}
+const macroCommand = MacroCommand()
+macroCommand.add(closeDoorCommand)
+macroCommand.add(closeWindowCommand)
+macroCommand.add(openLight)
+macroCommand.add(openTV)
+macroCommand.execute()
