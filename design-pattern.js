@@ -449,3 +449,47 @@ macroCommand.add(closeWindowCommand)
 macroCommand.add(openLight)
 macroCommand.add(openTV)
 macroCommand.execute()
+
+// ### 组合模式 (用小的子对象来构建大对象，而这些小的子对象本身可以由更小的孙对象组成)
+
+const Folder = function(name) {
+  this.name = name
+  this.parent = null
+  this.files = []
+}
+Folder.prototype.add = function(file){
+  file.parent = this
+  this.files.push(file)
+}
+Folder.prototype.scan = function(){
+  console.log('开始扫描文件夹')
+  for(let i = 0 ,files, files = this.files;file = files[i++];) {
+    file.scan()
+  }
+}
+Folder.prototype.remove = function(){
+  if(!this.parent) return
+  const files = this.parent.files
+  let len = files.length
+  for ( len ; len > 0;len-- ) {
+    const file = files[len]
+    if (file === this) { files.splice(len, 1) }
+  }
+}
+
+const File = function(name){
+  this.name = name
+}
+File.prototype.add = () => new Error('文件下边不能再添加文件！')
+File.prototype.scan = function(){
+  console.log('开始扫描文件！')
+}
+File.prototype.remove = function(){
+  if(!this.parent) return
+  const files = this.parent.files
+  let len = files.length
+  for ( len ; len > 0;len-- ) {
+    const file = files[len]
+    if (file === this) { files.splice(len, 1) }
+  }
+}
