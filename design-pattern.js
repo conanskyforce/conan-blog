@@ -493,3 +493,17 @@ File.prototype.remove = function(){
     if (file === this) { files.splice(len, 1) }
   }
 }
+
+const folder = new Folder('学习')
+const folder2 = new Folder('写作')
+const folder3 = new Folder('JavaScript')
+
+const file = new Folder('JavaScript.pdf')
+const file1 = new Folder('重构2.0.pdf')
+
+folder1.add(file)
+folder2.add(file)
+folder2.add(file1)
+folder.add(folder3)
+folder.add(folder2)
+
