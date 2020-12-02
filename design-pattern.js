@@ -1,6 +1,6 @@
 /// ## 设计模式
 
-const { concat } = require("lodash")
+const { concat, templateSettings } = require("lodash")
 const { func } = require("prop-types")
 
 
@@ -507,3 +507,21 @@ folder2.add(file1)
 folder.add(folder3)
 folder.add(folder2)
 
+// ### 享元模式 (共享支持大量细粒度的对象)
+
+const Model = function(sex, underwear){
+  this.sex = sex
+  this.underwear = underwear
+}
+Model.prototype.takePhoto = function(){
+  console.log('sex:',this.sex,' underware:',this.underwear)
+}
+for(let i = 0; i < 50; i++){
+  var maleModel = new Model('male', 'underware'+i)
+  maleModel.takePhoto()
+}
+for(let i = 0; i < 50; i++){
+  var femaleModel = new Model('female', 'underware'+i)
+  femaleModel.takePhoto()
+}
+// 需要新建100个对象
