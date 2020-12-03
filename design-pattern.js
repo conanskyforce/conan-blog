@@ -536,3 +536,27 @@ for(let i = 0; i < 50; i++){
   maleModel.underwear = 'underware'+i
   femaleModel.takePhoto()
 }
+
+// 只需要创建2对象
+// 将内部状态想同的对象指定为同一个共享对象，将外部状态从对象身上剥离出来，并储存在外部
+// 共享达到性能优化的目的
+// ### 对象池（共享资源池（buffer池））
+
+const toolTipFactory = (function(){
+  const toolTipPool = []
+  return {
+    create: () => {
+      if(toolTipPool.length === 0){
+        const div = document.createElement('div')
+        document.body.appendChild(div)
+        return div
+      } else {
+        return toolTipPool.unshift()
+      }
+    },
+    recover: (toolTipDom) => {
+      return toolTipPool.push(toolTipDom)
+    }
+    }
+  }
+)()
