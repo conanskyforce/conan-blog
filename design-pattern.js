@@ -525,3 +525,14 @@ for(let i = 0; i < 50; i++){
   femaleModel.takePhoto()
 }
 // 需要新建100个对象
+
+var maleModel = new Model('male', 'underware'+i)
+for(let i = 0; i < 50; i++){
+  maleModel.underwear = 'underware'+i
+  maleModel.takePhoto()
+}
+var femaleModel = new Model('female', 'underware'+i)
+for(let i = 0; i < 50; i++){
+  maleModel.underwear = 'underware'+i
+  femaleModel.takePhoto()
+}
