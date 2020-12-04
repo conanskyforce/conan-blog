@@ -560,3 +560,15 @@ const toolTipFactory = (function(){
     }
   }
 )()
+// ### 通用对象池
+const objectPoolFactory = (createFn) => {
+  const objectPool = []
+  return {
+    create: (...args) => {
+      const obj = objectPool.length === 0 ?
+        createFn.apply(this, args): objectPool.shift()
+      return obj
+    },
+    recover: (obj) => objectPool.push(obj)
+  }
+}
