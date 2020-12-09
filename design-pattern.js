@@ -572,3 +572,21 @@ const objectPoolFactory = (createFn) => {
     recover: (obj) => objectPool.push(obj)
   }
 }
+const iframeFactory = objectPoolFactory(function(){
+  const iframe = document.createElement('iframe')
+  document.body.appendChild(iframe)
+  iframe.onload = function(){
+    iframe.onload = null
+    iframeFactory.recover(iframe)
+  }
+  return iframe
+})
+const iframe1 = iframeFactory.create()
+iframe1.src = 'https://www.baidu.com'
+const iframe2 = iframeFactory.create()
+iframe2.src = 'https://www.zhihu.com'
+
+setTimeout(() => {
+  const iframe3 = iframeFactory.create()
+  iframe3.src = 'https://163.com'
+}, 3000)
