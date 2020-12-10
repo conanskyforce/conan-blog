@@ -590,3 +590,23 @@ setTimeout(() => {
   const iframe3 = iframeFactory.create()
   iframe3.src = 'https://163.com'
 }, 3000)
+
+// ### 职责链模式（请求经过一系列对象，在其中依次传递，直到遇到一个可以处理他的对象）
+
+const order500 = (orderType, pay, stock) => {
+  if(orderType === 1 && pay === true) {
+    console.log('order500类型')
+  } else {
+    order200(orderType, pay, stock)
+  }
+}
+const order200 = (orderType, pay, stock) => {
+  if(orderType === 2 && pay === true) {
+    console.log('order200类型')
+  } else {
+    orderNormal(orderType, pay, stock)
+  }
+}
+const orderNormal = (orderType, pay, stock) => {
+  console.log('orderNormal')
+}
