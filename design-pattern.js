@@ -610,3 +610,47 @@ const order200 = (orderType, pay, stock) => {
 const orderNormal = (orderType, pay, stock) => {
   console.log('orderNormal')
 }
+
+// 职责链模式修改耦合
+const order500 = (orderType, pay, stock) => {
+  if(orderType === 1 && pay === true) {
+    console.log('order500类型')
+  } else {
+    return 'nextSuccessor'
+  }
+}
+const order200 = (orderType, pay, stock) => {
+  if(orderType === 2 && pay === true) {
+    console.log('order200类型')
+  } else {
+    return 'nextSuccessor'
+  }
+}
+const orderNormal = (orderType, pay, stock) => {
+  console.log('orderNormal')
+}
+
+function Chain(fn){
+  this.fn = fn
+  this.successor = null
+}
+Chain.prototype.setNextSuccessor = function(successor){
+  return this.successor = successor
+}
+Chain.prototype.passRequest = function(){
+  const ret = this.fn.apply(this, arguments)
+  if(ret === 'nextSuccessor'){
+    return this.successor && this.successor.passRequest.apply(this.successor,arguments)
+  }
+  return ret
+}
+
+const chainOrder500 = new Chain(order500)
+const chainOrder200 = new Chain(order200)
+const chainOrderNormal = new Chain(orderNormal)
+
+chainOrder500.setNextSuccessor(chainOrder200)
+chainOrder200.setNextSuccessor(chainOrderNormal)
+
+chainOrder500.passRequest(1, true, 500)
+chainOrder500.passRequest(2, false, 500)
