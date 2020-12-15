@@ -654,3 +654,17 @@ chainOrder200.setNextSuccessor(chainOrderNormal)
 
 chainOrder500.passRequest(1, true, 500)
 chainOrder500.passRequest(2, false, 500)
+
+// 如果要增加order300类型
+const order300 = function(orderType, pay, stock){
+  if(orderType === 5 && pay === false){
+    console.log('order300')
+  } else {
+    return 'nextSuccessor'
+  }
+}
+const chainOrder300 = new Chain(order300)
+chainOrder500.setNextSuccessor(chainOrder300)
+chainOrder300.setNextSuccessor(chainOrder200)
+chainOrder200.setNextSuccessor(orderNormal)
+
