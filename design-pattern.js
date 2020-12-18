@@ -668,3 +668,9 @@ chainOrder500.setNextSuccessor(chainOrder300)
 chainOrder300.setNextSuccessor(chainOrder200)
 chainOrder200.setNextSuccessor(orderNormal)
 
+// 异步职责链
+
+Chain.prototype.next = function(){
+  return this.successor && this.successor.passRequest.apply(this.successor, arguments)
+}
+
