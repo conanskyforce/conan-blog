@@ -674,3 +674,18 @@ Chain.prototype.next = function(){
   return this.successor && this.successor.passRequest.apply(this.successor, arguments)
 }
 
+// 请求不用知道自己和N个接受者的关系，只用传递给第一个节点即可
+
+// 利用js的AOP实现职责链
+
+Function.prototype.after = function(fn){
+  const self = this
+  return function(){
+    const ret = self.apply(this,arguments)
+    if (ret === 'nextSuccessor'){
+      return fn.apply(this, arguments)
+    }
+    return ret
+  }
+}
+order500.after(order200).after(orderNormal)
