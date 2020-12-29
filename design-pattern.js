@@ -689,3 +689,33 @@ Function.prototype.after = function(fn){
   }
 }
 order500.after(order200).after(orderNormal)
+
+// 中介者模式 (解除对象与对象之间的耦合吗，多对多的关系改为多对一的关系，hub，迪米特法则，最少知识原则，尽可能少的需要了解外部对象)
+
+function Player(name, teamColor) {
+  this.name = name
+  this.teamColor = teamColor
+  this.state = 'alive'
+}
+
+Player.prototype.win = function(){
+  console.log(this.name + ' won')
+}
+Player.prototype.lose = function(){
+  console.log(this.name + ' lose')
+}
+Player.prototype.die = function(){
+  this.state = 'died'
+  playerDirector.receiveMessage('playerDead',this) // 向中介者发送消息
+}
+Player.prototype.remove = function(){
+  playerDirector.receiveMessage('playerRemove',this) // 向中介者发送消息
+}
+Player.prototype.changeTeam = function(color){
+  playerDirector.receiveMessage('changeTeam',this, color) // 向中介者发送消息
+}
+var playerFactory = function(name, teamColor){
+  var newPlayer = new Player(name, teamColor)
+  playerDirector.receiveMessage('addPlayer', newPlayer)
+  return newPlayer
+}
