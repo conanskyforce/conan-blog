@@ -719,3 +719,34 @@ var playerFactory = function(name, teamColor){
   playerDirector.receiveMessage('addPlayer', newPlayer)
   return newPlayer
 }
+var playerDirector = (function(){
+  var players = {}
+  var operations = {}
+  operations.addPlayer = function(player){
+    var teamColor = player.teamColor
+    players[teamColor] = players[teamColor] || []
+    players[teamColor].push(Player)
+  }
+  operations.removePlayer = function(player){
+    var teamColor = player.teamColor
+    var teamPlayers = players[teamColor] || []
+    for(var i = teamPlayers.length - 1; i >= 0; i--){
+      if(teamPlayers[i] === player){
+        teamPlayers.splice(i, 1)
+      }
+    }
+  }
+  operations.changeTeam = function(player, newTeamColor){
+    operations.removePlayer(Player)
+    player.teamColor = newTeamColor
+    operations.addPlayer(player)
+  }
+  //...
+  var receiveMessage = function(){
+    var message = Array.prototype.shift.call(arguments)
+    operations[message].apply(this, arguments)
+  }
+  return {
+    receiveMessage
+  }
+}())
