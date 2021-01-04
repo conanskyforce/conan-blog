@@ -750,3 +750,25 @@ var playerDirector = (function(){
     receiveMessage
   }
 }())
+
+// 装饰者模式 (给对象动态增加职责、方法的模式)
+
+var Plane = function(){}
+Plane.prototype.fire = function(){
+  console.log('Normal')
+}
+var MissileDecorator = function(plane) {
+  this.plane = plane
+}
+MissileDecorator.prototype.fire = function(){
+  this.plane.fire()
+  console.log("Missile")
+}
+
+var AtomDecorator = function(plane) {
+  this.plane = plane
+}
+AtomDecorator.prototype.fire = function(){
+  this.plane.fire()
+  console.log("Atom")
+}
