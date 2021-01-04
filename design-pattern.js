@@ -772,3 +772,10 @@ AtomDecorator.prototype.fire = function(){
   this.plane.fire()
   console.log("Atom")
 }
+
+var p = new Plane()
+var mP = new MissileDecorator(p)
+var aP = new AtomDecorator(mP)
+aP.fire()
+
+// 不影响原本对象的执行，透明，
