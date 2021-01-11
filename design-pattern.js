@@ -779,3 +779,22 @@ var aP = new AtomDecorator(mP)
 aP.fire()
 
 // 不影响原本对象的执行，透明，
+
+var a = function(){
+  alert(1)
+}
+var _a = a
+
+a = function(){
+  _a()
+  alert(2)
+}
+a()
+// 保留原引用的基础上增加新的功能
+
+_querySelectorAll = document.querySelectorAll
+
+document.querySelectorAll = function(...args){
+  console.log(arguments)
+  return _querySelectorAll.apply(document, arguments)
+}
