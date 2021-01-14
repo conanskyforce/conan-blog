@@ -816,3 +816,40 @@ Function.prototype.after = function(afterFn){
     return ret
   }
 }
+
+document.querySelectorAll = 
+  document.querySelectorAll
+    .after(function(){console.log('after1')})
+    .before(function(){console.log('before1')})
+      .after(function(){console.log('after2')})
+      .before(function(){console.log('before2')})
+
+document.querySelectorAll('a')
+
+var a = { a: a, log(){ console.log(this.a) }}
+var b = { b: b, log(){ console.log(this.b) }}
+var c = { c: c, log(){ console.log(this.c) }}
+
+a.log.after(b.log).before(c.log)()
+// c => a => b
+
+// ### 策略模式 (定义一系列算法，并将它们一个个封装起来，并使它们可以相互替换)
+// ### 策略模式 (定义一系列算法，并将它们一个个封装起来，并使它们可以相互替换)
+// ### 策略模式 (定义一系列算法，并将它们一个个封装起来，并使它们可以相互替换)
+// ### 策略模式 (定义一系列算法，并将它们一个个封装起来，并使它们可以相互替换)
+// ### 策略模式 (定义一系列算法，并将它们一个个封装起来，并使它们可以相互替换)
+// ### 策略模式 (定义一系列算法，并将它们一个个封装起来，并使它们可以相互替换)
+// ### 策略模式 (定义一系列算法，并将它们一个个封装起来，并使它们可以相互替换)
+// ### 策略模式 (定义一系列算法，并将它们一个个封装起来，并使它们可以相互替换)
+// ### 策略模式 (定义一系列算法，并将它们一个个封装起来，并使它们可以相互替换)
+// ### 策略模式 (定义一系列算法，并将它们一个个封装起来，并使它们可以相互替换)
+// ### 策略模式 (定义一系列算法，并将它们一个个封装起来，并使它们可以相互替换)
+
+
+
+
+
+
+
+
+
