@@ -52,4 +52,29 @@ Promise.resolve([1, 2, 3])
   .then(console.log)
 // [2,4,6]
 
+// ## chainAsync 
+const chainAsync = fns => {
+  let cursor = 0;
+  const last = fns.length - 1
+  const next = () => {
+    const fn = fns[cursor++]
+    cursor <= last ? fn(next) : fn()
+  }
+  next()
+}
+
+chainAsync([
+  next => {
+    console.log('async1')
+    setTimeout(next, 1000)
+  },
+  next => {
+    console.log('async2')
+    setTimeout(next, 1500)
+  },
+  () => {
+    console.log('sync3')
+  }
+])
+
 
