@@ -41,13 +41,15 @@ atob("Y29uYW4=")
 // ## call
 const call = (key, ...args) => (context) => context[key](...args)
 
-Promise.resolve([1,2,3])
-.then(call('map', x => x * 2))
-.then(console.log)
+Promise.resolve([1, 2, 3])
+  .then(call('map', x => x * 2))
+  .then(console.log)
 // [2,4,6]
 
-const map = call.bind(null,'map')
-Promise.resolve([1,2,3])
-.then(map(x => x * 2))
-.then(console.log)
+const map = call.bind(null, 'map')
+Promise.resolve([1, 2, 3])
+  .then(map(x => x * 2))
+  .then(console.log)
 // [2,4,6]
+
+
