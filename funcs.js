@@ -1,5 +1,12 @@
 // record some design pattern, fun functions...
 
+/**
+ * mapLimit run js tasks in concurrent mode
+ * @param {task[]} tasks 
+ * @param {number} concurrency 
+ * @param {function} cb 
+ * @param {boolean} showProcess 
+ */
 const mapLimit = (tasks, concurrency = 5, cb, showProcess) => {
   let index = 0,
     running = 0,
